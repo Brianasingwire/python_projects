@@ -1,28 +1,28 @@
-'''Password Generator'''
+'''Password Generator Project'''
 
 import string
 
-import secrets
+import random
 
-# import random
+import math
 
 
-def generate_password(min_length: int, numbers=True, special_characters=True):
+def generate_password(password_length: int) -> str:
     '''Function to generate random password'''
-    letters = string.ascii_letters
-    digits = string.digits
-    special = string.punctuation
 
-    characters = letters
-    if numbers:
-        characters += digits
+    num_letters = math.ceil(password_length / 2)
+    num_digits = math.floor(password_length / 4)
+    num_special = password_length - (num_letters + num_digits)
 
-    if special_characters:
-        characters += special
+    letters = random.choices(string.ascii_letters, k=num_letters)
+    digits = random.choices(string.digits, k=num_digits)
+    special = random.choices(string.punctuation, k=num_special)
 
-    password = ''.join([secrets.choice(characters) for _ in range(min_length)])
+    combined_list = letters+digits+special
 
+    random.shuffle(combined_list)
+
+    password = ''.join(combined_list)
+
+    # print(f'Your generated password is : {password}')
     return password
-
-
-# password = ''.join(random.sample(characters, min_length))
