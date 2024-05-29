@@ -24,5 +24,4 @@ def generate_password(password_length: int) -> str:
 
     password = ''.join(combined_list)
 
-    # print(f'Your generated password is : {password}')
     return password

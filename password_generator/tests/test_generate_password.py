@@ -7,21 +7,25 @@ import pytest
 from src.generate_password import generate_password
 
 
-def test_generate_password_length_8():
-    """
-    Test password length is 8
-    """
-
-    password = generate_password(8)
-    assert len(password) == 8
-
-
 def test_contains_letters_digits_specials():
     """
     Test for letters, digits and specials
     """
 
     password = generate_password(12)
+    assert any(c in string.ascii_letters for c in password)
+    assert any(c in string.digits for c in password)
+    assert any(c in string.punctuation for c in password)
+
+
+@pytest.mark.parametrize('length', [8, 12, 16, 20])
+def test_various_password_lengths(length):
+    """
+    Testing various password lenghts
+    """
+
+    password = generate_password(length)
+    assert len(password) == length
     assert any(c in string.ascii_letters for c in password)
     assert any(c in string.digits for c in password)
     assert any(c in string.punctuation for c in password)
