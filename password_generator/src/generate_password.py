@@ -8,7 +8,15 @@ import math
 
 
 def generate_password(password_length: int) -> str:
-    '''Function to generate random password'''
+    """
+    Function to generate random password
+
+    Args:
+        password_length (int): Length of the password generated.
+
+    Returns:
+        str: Password that has been generated.
+    """
 
     num_letters = math.ceil(password_length / 2)
     num_digits = math.floor(password_length / 4)
