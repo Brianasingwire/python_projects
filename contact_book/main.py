@@ -26,6 +26,7 @@ def main():
 
         if not choice.isdigit():
             print('Invalid input. Please enter a number between 0 and 6.')
+            continue
 
         choice = int(choice)
 

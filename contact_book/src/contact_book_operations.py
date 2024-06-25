@@ -33,11 +33,11 @@ def view_contact(contacts):
 def add_contact(contacts):
     """Function to add a contact to the Contact Book"""
 
-    name = input('Name of new contact : ').upper()
-    number = input('Enter 10 or 8 digits number : ')
+    name = input('Name of new contact: ').upper()
+    number = input('Enter phone number (10 digit number): ')
 
-    if not number.isdigit() or len(number) not in [8, 10]:
-        print(f'The number {number} is invalid. Try again.')
+    if not number.isdigit() or (len(number) < 10):
+        print(f'The phone number {number} is invalid. Try again.')
 
     else:
         contacts[name] = int(number)
@@ -52,9 +52,9 @@ def update_contact(contacts):
     name = input('Name of contact to update: ').upper()
 
     if name in contacts:
-        number = input('Enter new 10 or 8 digit number: ')
-        if not number.isdigit() or len(number) not in [8, 10]:
-            print(f'The number {number} is invalid. Try again.')
+        number = input('Enter a new phone number (10 digit number): ')
+        if not number.isdigit() or (len(number) < 10):
+            print(f'The phone number {number} is invalid. Try again.')
 
         else:
             contacts[name] = int(number)
