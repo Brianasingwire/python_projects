@@ -4,7 +4,12 @@ from openpyxl import Workbook, load_workbook
 
 
 class ContactBook:
-    """_summary_
+    """
+    Contact Book class describing a contact book.
+
+    Attributes:
+        file_name(str): File to which the contacts are to be saved and
+                        loaded from.
     """
 
     def __init__(self, file_name='Contacts.xlsx') -> None:
@@ -19,12 +24,13 @@ class ContactBook:
             self.sheet.append(['Name', 'Phone Number', 'Email'])
 
     def add_contact(self, name, phone, email):
-        """_summary_
+        """
+        Adding and updating contact to/in the Contact Book.
 
         Args:
-            name (_type_): _description_
-            phone (_type_): _description_
-            email (_type_): _description_
+            name (str): Name added/updated to/in Contact Book.
+            phone (_type_): Phone number added/updated to/in Contact Book.
+            email (str): Email address added/updated to/in Contact Book.
         """
         for idx, row in enumerate(self.sheet.iter_rows(values_only=True), start=1):
             if row[0] == name:
@@ -35,10 +41,11 @@ class ContactBook:
             self.sheet.append([name, phone, email])
 
     def view_contact(self, name):
-        """_summary_
+        """
+        Viewing a contact in the Contact Book.
 
         Args:
-            name (_type_): _description_
+            name (str): Name of contact to be viewed.
         """
         for row in self.sheet.iter_rows(values_only=True):
             if row[0] == name:
@@ -46,10 +53,11 @@ class ContactBook:
         return None
 
     def remove_contact(self, name):
-        """_summary_
+        """
+        Removing a contact from the Contact Book.
 
         Args:
-            name (_type_): _description_
+            name (str): Name of contact to be removed from Contact Book.
         """
         for idx, row in enumerate(self.sheet.iter_rows(values_only=True), start=1):
             if row[0] == name:
@@ -57,19 +65,21 @@ class ContactBook:
                 break
 
     def save_contacts(self):
-        """_summary_
+        """
+        Saving contact(s) to the Contact Book.
         """
         self.workbook.save(self.file_name)
 
     def display_contacts(self):
-        """_summary_
+        """
+        Displaying contact(s) in the Contact Book.
         """
         for row in self.sheet.iter_rows(values_only=True):
             print(row)
 
     def contact_menu(self):
         """
-        Function to printout Contact Book menu.
+        Printing out Contact Book menu.
         """
 
         print('')

@@ -6,9 +6,9 @@ from src.contact_book_operations import ContactBook
 def main():
     """
     Main Entry point function for the Contact Book project. This is
-    a GUI based project for storing information about a person like name
-    and contact number. The project includes functionalities like add, update,
-    delete, view and reset contacts.
+    a GUI based project for storing information about a person like name,
+    contact number and email. The project includes functionalities like add,
+    update, delete, view and reset contacts.
     """
 
     file_name = 'Contacts.xlsx'
