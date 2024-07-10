@@ -32,7 +32,7 @@ class ContactBook:
             phone (_type_): Phone number added/updated to/in Contact Book.
             email (str): Email address added/updated to/in Contact Book.
         """
-        for idx, row in enumerate(self.sheet.iter_rows(values_only=True), start=1):
+        for idx, row in enumerate(self.sheet.iter_rows(values_only=True), 1):
             if row[0] == name:
                 self.sheet.cell(row=idx, column=2, value=phone)
                 self.sheet.cell(row=idx, column=3, value=email)
@@ -59,7 +59,7 @@ class ContactBook:
         Args:
             name (str): Name of contact to be removed from Contact Book.
         """
-        for idx, row in enumerate(self.sheet.iter_rows(values_only=True), start=1):
+        for idx, row in enumerate(self.sheet.iter_rows(values_only=True), 1):
             if row[0] == name:
                 self.sheet.delete_rows(idx, 1)
                 break
