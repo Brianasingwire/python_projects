@@ -14,3 +14,4 @@ Each project folder typically contains:
 * **'tests/' :** Test files and scripts to ensure the code functions as expected.
 * **'requirements.txt' :** A file listing all the dependencies required by the project, which can be installed via `pip install -r requirements.txt`.
 * **'README.md'**: A detailed description of the project, including its purpose, how to set it up, run it, and any other necessary documentation.
+
