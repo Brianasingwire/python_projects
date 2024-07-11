@@ -9,10 +9,10 @@ import math
 
 def generate_password(password_length: int) -> str:
     """
-    Function to generate random password
+    Generating random passwords.
 
     Args:
-        password_length (int): Length of the password generated.
+        password_length (int): Length of the password to be generated.
 
     Returns:
         str: Password that has been generated.
