@@ -23,8 +23,7 @@ def main():
         except ValueError:
             print('Password must have more than 8 characters')
 
-    password = generate_password(
-        password_length)
+    password = generate_password(password_length)
 
     print(f"Your generated password is: {password}")
 
