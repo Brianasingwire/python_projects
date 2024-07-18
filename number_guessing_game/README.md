@@ -10,7 +10,7 @@ Welcome to the Number Guessing Game! This is a simple command-line game where th
 * Configurable number range
 * Keeps track of number of attempts
 
-## how to Play
+## How to Play
 
 1. The game will generate a random number between the specified range.
 2. Enter your guess.
