@@ -20,22 +20,22 @@ def main() -> None:
         command = input('Enter a number between 1 and 6: ')
 
         if command == '1':
-            name = input('Enter a name: ').capitalize()
-            number = input('Enter a number: ').strip()
+            name = input('Enter a name: ')
+            phone_number = input('Enter a number: ').strip()
+            if len(phone_number) < 10:
+                print('Phone number must be atleast 10 digits.')
+                return
+
             email = input('Enter email address: ').strip()
-            contact_book.add_contacts(name, number, email)
+            contact_book.add_contacts(name, phone_number, email)
             print(f"Contact {name} added successfully...")
 
         elif command == '2':
-            name = input('Enter a name: ').capitalize()
-            contact = contact_book.view_contact(name)
-            if contact is not None:
-                print(contact)
-            else:
-                print(f"Contact {name} not found...")
+            name = input('Enter a name: ')
+            contact_book.view_contact(name)
 
         elif command == '3':
-            name = input('Enter a name: ').capitalize()
+            name = input('Enter a name: ')
             contact_book.delete_contact(name)
             print(f'Contact {name} successfully deleted...')
 
@@ -47,8 +47,7 @@ def main() -> None:
             contact_book.display_contacts()
 
         elif command == '6':
-            contact_book.save_contacts()
-            print('Contacts saved successfully...')
+            print('Terminated program successfully...')
             break
 
         else:
