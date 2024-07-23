@@ -1,6 +1,22 @@
 '''Main Entry Point function'''
 
+import sys
+
 from src.contact_book_operation import ContactBook
+
+
+def contact_book_menu():
+    """
+    Displays Contact Book menu.
+    """
+    print('')
+    print('Enter 1 to add contact.')
+    print('Enter 2 to view a contact.')
+    print('Enter 3 to delete a contact.')
+    print('Enter 4 to clear contact book.')
+    print('Enter 5 to display contacts.')
+    print('Enter 6 to exit.')
+    print('')
 
 
 def main() -> None:
@@ -11,47 +27,54 @@ def main() -> None:
     update, delete, view and reset contacts.
     """
 
-    file_name = 'Contacts.xlsx'
+    file_name = 'Contact.xlsx'
     contact_book = ContactBook(file_name)
 
     while True:
-        contact_book.contact_book_menu()
+        contact_book_menu()
 
         command = input('Enter a number between 1 and 6: ')
 
         if command == '1':
             name = input('Enter a name: ')
             phone_number = input('Enter a number: ').strip()
-            if len(phone_number) < 10:
-                print('Phone number must be atleast 10 digits.')
-                return
-
             email = input('Enter email address: ').strip()
             contact_book.add_contacts(name, phone_number, email)
-            print(f"Contact {name} added successfully...")
+            print(f"\nContact {name} added successfully...")
 
         elif command == '2':
             name = input('Enter a name: ')
-            contact_book.view_contact(name)
+            queried_contacts = contact_book.view_contact(name)
+
+            if len(queried_contacts) == 0:
+                print('\nNo contacts found...')
+            else:
+                for contact in queried_contacts:
+                    print(contact)
 
         elif command == '3':
             name = input('Enter a name: ')
-            contact_book.delete_contact(name)
-            print(f'Contact {name} successfully deleted...')
+            is_deleted = contact_book.delete_contact(name)
+            if is_deleted:
+                print(f'\nContact {name} successfully deleted...')
+            else:
+                print('\nNo contact was deleted...')
 
         elif command == '4':
             contact_book.clear_contact_book()
-            print('Contact Book cleared successfully...')
+            print('\nContact Book cleared successfully...')
 
         elif command == '5':
-            contact_book.display_contacts()
+            contacts = contact_book.display_contacts()
+            for contact in contacts:
+                print(contact)
 
         elif command == '6':
             print('Terminated program successfully...')
-            break
+            sys.exit(0)
 
         else:
-            print('Invalid command. Enter a number between 1 and 6.')
+            print('\nInvalid command. Please enter a number between 1 and 6.')
 
 
 if __name__ == '__main__':

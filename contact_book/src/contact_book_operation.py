@@ -32,22 +32,21 @@ class ContactBook:
         self.sheet.append([name, phone_number, email])
         self.workbook.save(self.file_name)
 
-    def view_contact(self, name: str) -> dict:
+    def view_contact(self, name: str) -> list:
         """
         Views a contact.
 
         Args:
             name (str): Name to be viewed.
         """
-        contacts = []
-        for row in self.sheet.iter_rows(values_only=True):
+        queried_contacts = []
+        for row in self.sheet.iter_rows(min_row=2, values_only=True):
             if name.lower() in row[0].lower():
-                contacts.append(list(row))
+                queried_contacts.append(list(row))
 
-        for contact in contacts:
-            print(contact)
+        return sorted(queried_contacts)
 
-    def delete_contact(self, name: str) -> None:
+    def delete_contact(self, name: str) -> bool:
         """
         Deletes a contact.
 
@@ -57,7 +56,9 @@ class ContactBook:
         for idx, row in enumerate(self.sheet.iter_rows(values_only=True), 1):
             if row[0] == name:
                 self.sheet.delete_rows(idx, 1)
-        self.workbook.save(self.file_name)
+                self.workbook.save(self.file_name)
+                return True
+        return False
 
     def clear_contact_book(self):
         """
@@ -67,34 +68,12 @@ class ContactBook:
             self.sheet.delete_rows(2)
         self.workbook.save(self.file_name)
 
-    def display_contacts(self):
+    def display_contacts(self) -> list:
         """
         Displays all contacts.
         """
         contacts = []
-        for row in self.sheet.iter_rows(values_only=True):
+        for row in self.sheet.iter_rows(min_row=2, values_only=True):
             contacts.append(list(row))
 
-        sorted_contacts = sorted(contacts[1:])
-        print(contacts[0])
-        for contact in sorted_contacts:
-            print(contact)
-
-    def exit(self):
-        """
-        Exits the program.
-        """
-        # print('Contacts saved successfully...')
-
-    def contact_book_menu(self):
-        """
-        Displays Contact Book menu.
-        """
-        print('')
-        print('Enter 1 to add contact.')
-        print('Enter 2 to view a contact.')
-        print('Enter 3 to delete a contact.')
-        print('Enter 4 to clear contact book.')
-        print('Enter 5 to display contacts.')
-        print('Enter 6 to exit.')
-        print('')
+        return sorted(contacts)
