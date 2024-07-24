@@ -32,19 +32,19 @@ class ContactBook:
         self.sheet.append([name, phone_number, email])
         self.workbook.save(self.file_name)
 
-    def view_contact(self, name: str) -> list:
+    def view_contacts(self, name: str) -> list:
         """
         Views a contact.
 
         Args:
             name (str): Name to be viewed.
         """
-        queried_contacts = []
+        contacts = []
         for row in self.sheet.iter_rows(min_row=2, values_only=True):
             if name.lower() in row[0].lower():
-                queried_contacts.append(list(row))
+                contacts.append(list(row))
 
-        return sorted(queried_contacts)
+        return sorted(contacts)
 
     def delete_contact(self, name: str) -> bool:
         """
@@ -67,13 +67,3 @@ class ContactBook:
         while self.sheet.max_row > 1:
             self.sheet.delete_rows(2)
         self.workbook.save(self.file_name)
-
-    def display_contacts(self) -> list:
-        """
-        Displays all contacts.
-        """
-        contacts = []
-        for row in self.sheet.iter_rows(min_row=2, values_only=True):
-            contacts.append(list(row))
-
-        return sorted(contacts)
