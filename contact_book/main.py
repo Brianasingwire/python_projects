@@ -11,11 +11,10 @@ def contact_book_menu():
     """
     print('')
     print('Enter 1 to add contact.')
-    print('Enter 2 to view a contact.')
+    print('Enter 2 to view a contact(s).')
     print('Enter 3 to delete a contact.')
     print('Enter 4 to clear contact book.')
-    print('Enter 5 to display contacts.')
-    print('Enter 6 to exit.')
+    print('Enter 5 to exit.')
     print('')
 
 
@@ -33,7 +32,7 @@ def main() -> None:
     while True:
         contact_book_menu()
 
-        command = input('Enter a number between 1 and 6: ')
+        command = input('Enter a number between 1 and 5: ')
 
         if command == '1':
             name = input('Enter a name: ')
@@ -44,13 +43,14 @@ def main() -> None:
 
         elif command == '2':
             name = input('Enter a name: ')
-            queried_contacts = contact_book.view_contact(name)
+            contacts = contact_book.view_contacts(name)
 
-            if len(queried_contacts) == 0:
+            if len(contacts) == 0:
                 print('\nNo contacts found...')
             else:
-                for contact in queried_contacts:
-                    print(contact)
+                print('\nCONTACTS: ')
+                for contact in contacts:
+                    print(f"\t{contact}")
 
         elif command == '3':
             name = input('Enter a name: ')
@@ -65,16 +65,11 @@ def main() -> None:
             print('\nContact Book cleared successfully...')
 
         elif command == '5':
-            contacts = contact_book.display_contacts()
-            for contact in contacts:
-                print(contact)
-
-        elif command == '6':
             print('Terminated program successfully...')
             sys.exit(0)
 
         else:
-            print('\nInvalid command. Please enter a number between 1 and 6.')
+            print('\nInvalid command. Please enter a number between 1 and 5.')
 
 
 if __name__ == '__main__':
